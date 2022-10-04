@@ -1,0 +1,55 @@
+/* body{
+    overflow: hidden;
+} */
+
+.audiowave-container{
+    overflow-x: scroll;
+    height: 100px;
+    
+    background-color: red;
+}
+.audiowave{
+    width: 2000px;
+}
+
+.annotations-container{
+    overflow-x: scroll;
+    height: 100px;
+    /* width: 2000px; */
+    background-color: green;
+    
+}
+.annotations{
+    width: 2000px;
+}
+.vertical-line{
+    position: fixed;
+    
+    left: 10px;
+    width: 2px;
+    height: 80px;
+    background-color: blue;
+}
+
+.custom-div{
+    position: absolute;
+    width: 100px;
+    height: 85px;
+    background-color: yellow;
+}
+
+.custom-div>div{
+    position: relative;
+    color: red;
+    background-color: blue;
+    right: -80%;
+    width: 20px;
+    margin-right: 10px;
+    
+}
+.yellow{
+    background-color: yellow;
+}
+.blue{
+    background-color: aqua;
+}

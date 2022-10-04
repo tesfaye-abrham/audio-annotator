@@ -1,24 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
-
+import AnnotatorForm from './AnnotatorForm/AnnotatorForm';
+import { Provider } from "react-redux"
+import store from "./store/annotatorStore"
 function App() {
+  // document.addEventListener("keydown", e=>{
+  //   if(e.ctrlKey){
+  //     // e.preventDefault();
+  //     console.log(e.which);
+  //   }
+  // });
+  // document.addEventListener("keydown", e=>{
+  //   if(e.ctrlKey){
+  //     e.preventDefault();
+  //     // console.log(e.which);
+  //   }
+  // });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <AnnotatorForm/>
+    </Provider>
   );
 }
 
