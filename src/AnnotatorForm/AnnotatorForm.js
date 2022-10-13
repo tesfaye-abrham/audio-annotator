@@ -3,7 +3,7 @@ import "./AnnotatorForm.css"
 import { useSelector,useDispatch } from "react-redux";
 
 // import Annotation from "../Objects/Annotation";
-import {setScrollPos,addAnnotation,setAnnotationText,setAnnotationWidth,translateAnnotationPosition,deleteAnnotation,setSelectedAnnotationIndex} from "../slices/annotatorSlice";
+import {setScrollPos,addAnnotation,setAnnotationWidth,translateAnnotationPosition,deleteAnnotation,setSelectedAnnotationIndex, setAnnotationText} from "../slices/annotatorSlice";
 
 
 const AnnotatorForm = (props)=>{
@@ -25,25 +25,12 @@ const AnnotatorForm = (props)=>{
     const handleScroll = (e)=>{
         
         const position =scrollA.current.scrollLeft ;
-        // const width = audiowave.current.getBoundingClientRect().width;
         const resultant = position - scrollPos
-        // setScrollPos((pos)=>{
-        //     scrollB.current.scrollTo(position,0)
-        //     return position;
-
-        // });
-        // console.log(position);
-        // setDivPosX((divPosX)=>{
-
-        //     return divPosX.map((x)=>{
-        //         return x - resultant;
-        //     })
-        // })
+       
 
         dispatch(setScrollPos({scrollPos: position}))
         scrollB.current.scrollTo(position,0)
         dispatch(translateAnnotationPosition({change: resultant}))
-        // setTranslatePos(resultant)
         
     }
 
@@ -59,31 +46,48 @@ const AnnotatorForm = (props)=>{
         }
     }
 
-    const selectHandler = (e,index)=>{
+    const selectHandler = (e,index,autoFocus)=>{
        
-        dispatch(setSelectedAnnotationIndex({"index":index}))
-        // console.log(selectedAnnotationIndex);
-    }
-    const keyHandler =  (e)=>{
+        if(!autoFocus){
+            dispatch(setSelectedAnnotationIndex({"index":index}))
+            document.getElementsByClassName("text-input")[index].focus()
+            console.log("select");
+        }
         
-        console.log(e.key,selectedAnnotationIndex);
-        if( e.key === "Delete"){
+
+    }
+    const keyUpHandler =  (e)=>{
+        if(e.ctrlKey && e.key === "Delete"){
             console.log("here");
             dispatch(deleteAnnotation());
         }
-        // if(e.key == "Backspace"){ /// cut last letter
-        //     dispatch(setAnnotationText({text: ""}))
-        // }
-        if(e.key.length==1){
-            console.log(selectedAnnotationIndex);
-            dispatch(setAnnotationText({text: `${annotations[selectedAnnotationIndex]["text"]}${e.key}`}))
-        }
-
     }
-    useEffect(()=>{
-        document.addEventListener("keyup",keyHandler)
-    },[])
 
+    useEffect(()=>{
+        document.addEventListener("keyup",keyUpHandler)
+        document.addEventListener("click",storeLogger)
+   
+    },[])
+    useEffect(()=>{
+        console.log(annotations);
+    },[annotations])
+
+    const TextInputHandler = (e,index)=>{
+        if(e.key.length<2){
+            let inputText = document.getElementsByClassName("text-input")[index].value;
+            dispatch(setAnnotationText({text:inputText}))
+            
+        }
+    }
+    const storeLogger = ()=>{
+        // console.log(annotations);
+    
+    }
+    const handleInputClick = (e,index)=>{
+        if(index===selectedAnnotationIndex){
+            e.stopPropagation();
+        }
+    }
     
 
 
@@ -97,14 +101,14 @@ const AnnotatorForm = (props)=>{
                 
                 return  <div 
                             key={i} 
-                            onClick={(e)=>{selectHandler(e,i)}}
+                            onClick={(e)=>{selectHandler(e,i,false)}}
                             // onClick={(e)=>{selectHandler(e,i)}}
-                            // onKeyUp={keyHandler}
+                            
                             className={ `custom-div  ${i===selectedAnnotationIndex?"blue":"yellow"}`}
                             style={{"left":`${annotation.position}px`
                         }}>
-                            {/* <div onClick={(e)=>{selectHandler(e,i)}}>x</div> */}
-                            {annotation.text}
+                           
+                            <input onClick={(e)=>{handleInputClick(e,i)}} onFocus={(e)=>{selectHandler(e,i,true)}} onKeyUp={(e)=>{TextInputHandler(e,i)}} className="text-input" type={"text"}></input>
                         </div>
             }):''}
                 Adipisicing sint nulla sint ad enim culpa elit pariatur nisi. Adipisicing veniam consequat culpa nulla reprehenderit tempor et. Ex fugiat reprehenderit eiusmod culpa. Labore reprehenderit exercitation culpa deserunt mollit dolor pariatur culpa consequat culpa aliquip enim cillum proident. Do ipsum occaecat ex est.

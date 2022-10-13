@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 
 import Annotation from "../Objects/Annotation";
+import {produce} from "immer";
 
 
 export const annotatorSlice = createSlice(
@@ -25,7 +26,21 @@ export const annotatorSlice = createSlice(
             setAnnotationText: (state,action)=>{
                 let currIndex = state.selectedAnnotationIndex;
                 if(currIndex!==-1){
-                    state.annotations[currIndex].text = action.payload.text
+                    state.annotations[currIndex].text = action.payload.text;
+                }
+                
+            },
+            backspaceAnnotationText: (state,action)=>{
+                let currIndex = state.selectedAnnotationIndex;
+                if(currIndex!==-1){
+                    state.annotations[currIndex].text = state.annotations[currIndex].text.slice(0,-1)
+                }
+                
+            },
+            removeAnnotationText: (state,action)=>{
+                let currIndex = state.selectedAnnotationIndex;
+                if(currIndex!==-1){
+                    state.annotations[currIndex].text = "";
                 }
                 
             },
@@ -37,7 +52,7 @@ export const annotatorSlice = createSlice(
                 
             },
             translateAnnotationPosition: (state,action)=>{
-                let annotationsList = state.annotations;
+                
                 state.annotations.map((ann,i)=>{
                     // console.log(ann.position);
                     state.annotations[i].position = state.annotations[i].position - action.payload.change
@@ -77,7 +92,9 @@ export const {
     setAnnotationWidth,
     translateAnnotationPosition,
     deleteAnnotation,
-    setSelectedAnnotationIndex
+    setSelectedAnnotationIndex,
+    removeAnnotationText,
+    backspaceAnnotationText
 
 } = annotatorSlice.actions;
 

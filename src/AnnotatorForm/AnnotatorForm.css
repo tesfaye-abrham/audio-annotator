@@ -36,7 +36,18 @@
     width: 100px;
     height: 85px;
     background-color: yellow;
+    border: solid black 2px;
+    /* resize: horizontal;
+    overflow-x: auto; */
+    display: flex;
+    align-items: center;
+    
+
+    
 }
+/* .custom-div::after{
+    cursor: ew-resize;
+} */
 
 .custom-div>div{
     position: relative;
@@ -52,4 +63,27 @@
 }
 .blue{
     background-color: aqua;
+}
+
+.annotation-text{
+
+}
+.blinking{
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.text-input{
+    width: 100%;
+    border: none;
+    height: 50px;
+    font-size: .9em;
+    text-align: center;
+    /* margin: 5px; */
+    
 }
