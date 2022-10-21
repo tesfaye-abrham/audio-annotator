@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="right_panel"></div>
+</body>
+<style>
+    #right_panel {
+        position: absolute;
+        width: 96px;
+        padding-left: 4px;
+        padding-right: 10px;
+        height: 100%;
+        right: 100px;
+        background-color: #f0f0ff;
+    }
+
+    #right_panel::after {
+        content: '';
+        background-color: #ccc;
+        position: absolute;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        cursor: ew-resize;
+    }
+    #right_panel::before{
+    left: 100%;
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    cursor: ew-resize;
+    background-color: #ccc;
+
+}
+</style>
+<script>
+    const BORDER_SIZE = 4;
+    const panel = document.getElementById("right_panel");
+
+    let m_pos;
+    function resize(e) {
+        const dx = m_pos - e.x;
+        m_pos = e.x;
+        panel.style.width = (parseInt(getComputedStyle(panel, '').width) + dx) + "px";
+    }
+
+    panel.addEventListener("mousedown", function (e) {
+        console.log(e.offsetX);
+        console.log(document.getElementById("right_panel").style["width"]);
+        // another condition to detect right drag || (Math.abs(e.offsetX-m_pos+parseInt(panel.style.width))<20)
+        if (e.offsetX < BORDER_SIZE ) {
+            m_pos = e.x;
+            document.addEventListener("mousemove", resize, false);
+        }
+    }, false);
+
+    document.addEventListener("mouseup", function () {
+        document.removeEventListener("mousemove", resize, false);
+    }, false);
+</script>
+
+</html>

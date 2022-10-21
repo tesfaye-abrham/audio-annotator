@@ -47,7 +47,8 @@ export const annotatorSlice = createSlice(
             setAnnotationWidth: (state,action)=>{
                 let currIndex = state.selectedAnnotationIndex;
                 if(currIndex!==-1){
-                    state.annotations[currIndex].width = action.payload.width
+                    state.annotations[currIndex] ={ ...state.annotations[currIndex],width:action.payload.width}
+                    console.log(state.annotations[currIndex]);
                 }
                 
             },

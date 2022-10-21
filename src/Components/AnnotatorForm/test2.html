@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <p class="boring-text">Here is some plain old boring text.</p>
+<p>Here is some normal text that is neither boring nor exciting.</p>
+<p class="exciting-text">Contributing to MDN is easy and fun.</p>
+<style>
+    .exciting-text::after {
+  content: " <- EXCITING!";
+  color: green;
+}
+
+.boring-text::before {
+  content: " <- BORING";
+  color: red;
+}
+</style>
+    </body>
+</html>

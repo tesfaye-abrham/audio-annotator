@@ -1,25 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
-import AnnotatorForm from './AnnotatorForm/AnnotatorForm';
+import AnnotatorForm from './Components/AnnotatorForm/AnnotatorForm';
 import { Provider } from "react-redux"
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import store from "./store/annotatorStore"
+import HomePage from './Components/AudioUpload/UploadPage';
+import { FileContextProvider } from './Contexts/fileContext';
+import AudioWaveForm from './Components/AudioForm/AudioWaveForm';
 function App() {
-  // document.addEventListener("keydown", e=>{
-  //   if(e.ctrlKey){
-  //     // e.preventDefault();
-  //     console.log(e.which);
-  //   }
-  // });
-  // document.addEventListener("keydown", e=>{
-  //   if(e.ctrlKey){
-  //     e.preventDefault();
-  //     // console.log(e.which);
-  //   }
-  // });
+  
   return (
-    <Provider store={store}>
-      <AnnotatorForm/>
-    </Provider>
+    <FileContextProvider>
+      <Provider store={store}>
+          <Router>
+            <Switch>
+            
+                <Route path="/" component={HomePage} exact/>
+                {/* <Route path="/annotate" component={AnnotatorForm} exact/> */}
+                <Route path="/annotate" component={AudioWaveForm} exact/>
+                </Switch>
+          </Router>
+      </Provider>
+    </FileContextProvider>
   );
 }
 
