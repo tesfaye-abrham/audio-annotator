@@ -15,7 +15,7 @@ function App() {
             <Switch>
             
                 <Route path="/" component={HomePage} exact/>
-                {/* <Route path="/annotate" component={AnnotatorForm} exact/> */}
+                <Route path="/annotate-text" component={AnnotatorForm} exact/>
                 <Route path="/annotate" component={AudioWaveForm} exact/>
                 </Switch>
           </Router>

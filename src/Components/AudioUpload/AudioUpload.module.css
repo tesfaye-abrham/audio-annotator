@@ -1,0 +1,38 @@
+.upload-audio{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    
+
+}
+
+.upload-title{
+    background-color: orange;
+    height: 100px;
+    text-align: center;
+    width: 100%;
+}
+
+.upload-btn{
+    margin: auto;
+    /* margin-top: 100px; */
+    width: 300px;
+    height: 300px;
+    /* background-color: aqua; */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid 2px  black;
+    border-style: dashed;
+    font-size: 2em;
+    font-weight: 100;
+}
+
+.upload-btn:hover{
+    background-color: rgb(143, 243, 243);
+    color: white;
+    font-weight: 400;
+    cursor: pointer;
+    
+}

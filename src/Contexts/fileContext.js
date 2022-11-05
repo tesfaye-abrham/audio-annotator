@@ -3,9 +3,10 @@ import React, { createContext, useState } from 'react';
 const FileContext = createContext();
 
 const FileContextProvider = ({ children }) => {
-	const [fileURL, setFileURL] = useState('');
+	const [fileURLs, setFileURLs] = useState([]);
+	const [fileNames, setFileNames] = useState([]);
 	return (
-		<FileContext.Provider value={{ fileURL, setFileURL }}>
+		<FileContext.Provider value={{ fileURLs, setFileURLs,fileNames, setFileNames }}>
 			{children}
 		</FileContext.Provider>
 	);

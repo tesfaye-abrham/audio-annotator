@@ -1,7 +1,302 @@
-.wavesurfer-region {
-
-    background-color: red;
+body{
+    overflow-x: hidden;
 }
-.wavesurfer-handle{
-    color: red;
+
+
+.waveform-sidebar-container{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: scroll;
+    
+    margin-left: 11px;
+    overflow-x: hidden;
+    width: auto;
+
+    
+}
+
+.audiowave-container{
+    overflow-x: scroll;
+    height: 100px;
+}
+/* .audiowave-container::-webkit-scrollbar{
+    width: 100%;
+    height: 10px;
+}
+
+.audiowave-container::-webkit-scrollbar-thumb{
+    background-color: yellow;
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    
+    
+} */
+
+.file-name-title{
+    height: 100px; 
+    width: 100%; 
+    text-align: center;
+    background-color: rgb(239, 134, 4);
+    padding: 10px;
+    font-size: x-large;
+}
+
+
+.audiowave{
+    overflow-x: hidden;
+    
+    
+}
+
+
+.annotations-container{
+    overflow-x: scroll;
+    height: 100px;
+    /* width: 2000px; */
+    background-color: green;
+    
+}
+
+.custom-div{
+    position: absolute;
+    width: 100px;
+    height: 90px;
+    background-color: yellow;
+    border-right: solid black 1px;
+    border-left: solid black 1px;
+    display: flex;
+    align-items: center;
+}
+
+.custom-div>div{
+    position: relative;
+    /* color: red; */
+    background-color: blue;
+    right: -80%;
+    width: 20px;
+    margin-right: 10px;
+    
+}
+.yellow{
+    background-color: yellow;
+}
+.blue{
+    background-color: aqua;
+}
+
+
+
+.text-input{
+    width: 100%;
+    border: none;
+    height: 50px;
+    font-size: .9em;
+    text-align: center;
+    /* margin: 5px; */
+    
+}
+
+/* media-controls-container */
+.media-controls-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100px;
+    width: 80%;
+    box-shadow: 1px 1px 4px 1px  grey;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+}
+.media-buttons{
+    display: flex;
+    margin: auto;
+    
+}
+
+.play-control-container{
+    margin: auto;
+}
+
+.play-button{
+    display: flex;
+    width: 60px;
+    height: 60px;
+    background-color: grey;
+    border-radius: 30px;
+    justify-content: center;
+    
+}
+
+
+.play-button>img{
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+.waveform-sidebar-container{
+    height: 100vh;
+}
+
+
+
+#waveform{
+    border-right: solid 1px grey;
+}
+
+
+
+
+
+
+
+/*  */
+
+
+.export-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-radius: 10px;
+    background-color: rgb(17, 17, 194);
+    height: 70px;
+    width: 100px;
+    margin: auto;
+    padding: 0 30px;
+    color: white;
+}
+
+.export-button>img{
+    width: 40px;
+}
+
+/*  */
+.media-nav-button-container{
+    margin-top: 20px;
+    width: 100vw-11px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.media-nav-button{
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: large;
+    opacity: 0.8;
+    margin: 0 20px;
+}
+.media-nav-button:hover{
+    opacity: 1;
+    
+}
+
+.green-button{
+    background-color: green;
+    color: white;
+}
+.grey-button{
+    background-color: grey;
+    color: white;
+}
+
+
+
+
+
+/* SIde bar */
+.sidebar{
+    height: 100%;
+	position: absolute;
+    left: 0px;
+    top: 0px;
+
+    z-index: 10;
+    background-color: white;
+	display: flex;
+	flex-direction: row;
+    
+
+}
+
+.file-list-container{
+    overflow-y: scroll;
+
+}
+
+.file-list-container::-webkit-scrollbar{
+    width: 100%;
+    height: 10px;
+}
+
+.file-list-container::-webkit-scrollbar-thumb{
+    background-color: transparent;
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    
+    
+}
+
+
+.sidebar-title{
+    height:40px;
+    font-size: x-large;
+    text-align: center;
+    padding-top: 10px;
+    font-weight: 800;
+    border-bottom: solid 1px grey;
+    margin-top: 0;
+}
+
+.sidebar-file-container{
+    text-overflow: ellipsis; 
+    overflow: hidden;
+    white-space: nowrap;
+    height: 30px;
+    margin-bottom: 5px;
+    box-shadow: 1px 1px 1px 0px grey;
+    border-radius: 5px;
+
+}
+.sidebar-file-container:hover{
+    background-color: rgba(0, 255, 255,0.2);
+    cursor: pointer;
+}
+
+
+.sidebar-toggle{
+    padding-top: 45vh ;
+    background-color: rgba(0,0,0,0.1);
+    /* width: 22px; */
+}
+.sidebar-toggle:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.sidebar-shade{
+    background-color: grey;
+    opacity: 0.4;
+    position: absolute;
+    left: 311px;
+}
+
+
+.sidebar-shade:hover{
+    cursor: pointer;
 }

@@ -1,0 +1,41 @@
+
+.media-control-container{
+    /* display: flex;
+    justify-content: space-evenly; */
+    margin: 10px;
+    margin-bottom: 5px;
+    box-shadow: 1px 1px 4px 1px  grey;
+    height: fit-content;
+    border-radius: 10px;
+    text-align: center;
+    
+}
+
+.media-controls{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* #media-in,#mediaout */
+.media-button{
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    background-color: green;
+    border-radius: 15px;
+    margin: 10px 5px;
+    color: white;
+    font-size: large;   
+}
+.media-button:hover{
+    cursor: pointer;
+}
+
+#media-level{
+    text-align: center;
+    font-size: large;
+    margin: auto;
+    height: 30px;
+    width: 30px;
+    margin: 10px 0 ;
+}

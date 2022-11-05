@@ -1,39 +1,63 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { FileContext } from '../../Contexts/fileContext';
+import styles from "./AudioUpload.module.css"
 
 const AudioUpload = ({ history }) => {
 	const inputFile = useRef(null);
-	const { fileURL, setFileURL } = useContext(FileContext);
-	const [file, setFile] = useState(null);
+	const { fileURLs, setFileURLs, fileNames, setFileNames } = useContext(FileContext);
+	const [files, setFiles] = useState([]);
+	const [names, setNames] = useState([])
 
 	useEffect(() => {
-		if (file) {
-			setFileURL(file);
-			console.log(fileURL);
-			history.push('/annotate');
+		if (files.length > 0) {
+			setFileURLs(files);
+			setFileNames((nam) => { console.log(names); return names; })
+			history.push("/annotate")
+
 		}
-	}, [file, setFileURL, history]);
+	}, [files, setFileURLs, history, names]);
 
 	const handleButtonClick = () => {
 		inputFile.current.click();
 	};
 
 	const handleFileUpload = (e) => {
-		// console.log(file);
-		setFile(URL.createObjectURL(e.target.files[0]));
+		console.log(e.target.files[0]);
+		// setFiles([...URL.createObjectURL(e.target.files)]);
+		let urls = Array(...e.target.files).map((file) => URL.createObjectURL(file))
+		setNames(Array(...e.target.files).map((file) => file.name))
+
+		setFiles(urls);
+
+
 	};
+	const dragOverHandler = (e)=>{
+		e.preventDefault()
+		console.log("holding");
+	}
+	const dropHandler = (e)=>{
+		e.preventDefault();
+		const files = [...e.dataTransfer.items].map((item)=>{
+			return item.getAsFile();
+		})
+		handleFileUpload({"target":{"files":files}})
+	}
 
 	return (
-		<div className='upload-audio'>
-			<i
-				style={{ color: '#531A65' }}
-				className='material-icons audio-icon'>
-				library_music
-			</i>
-			<h1>Upload your audio file here</h1>
-			<button className='upload-btn' onClick={handleButtonClick}>
+		<div 
+		onDragOver={dragOverHandler}
+		onDrop={dropHandler}
+		className={styles['upload-audio']}>
+			
+			<div className={styles['upload-title']}>
+				<h1>Upload your audio file here</h1>
+			</div>
+			<div 
+				className={styles['upload-btn']} 
+				onClick={handleButtonClick}
+				>
 				Upload
-			</button>
+			</div>
 			<input
 				type='file'
 				id='file'
@@ -41,6 +65,7 @@ const AudioUpload = ({ history }) => {
 				style={{ display: 'none' }}
 				accept='audio/*'
 				onChange={handleFileUpload}
+				multiple={true}
 			/>
 		</div>
 	);

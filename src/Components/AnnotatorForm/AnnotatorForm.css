@@ -6,7 +6,7 @@
     overflow-x: scroll;
     height: 100px;
     
-    background-color: red;
+    /* background-color: red; */
 }
 .audiowave-container::-webkit-scrollbar{
     width: 100%;
@@ -25,7 +25,7 @@
 
 
 .audiowave{
-    width: 2000px;
+    overflow-x: hidden;
     
     
 }
@@ -38,18 +38,14 @@
     background-color: green;
     
 }
-.annotations{
-    width: 2000px;
-}
-
 
 .custom-div{
     position: absolute;
     width: 100px;
     height: 90px;
     background-color: yellow;
-    border-right: solid black 2px;
-    border-left: solid black 2px;
+    border-right: solid black 1px;
+    border-left: solid black 1px;
     display: flex;
     align-items: center;
 
@@ -80,7 +76,7 @@
 
 .custom-div>div{
     position: relative;
-    color: red;
+    /* color: red; */
     background-color: blue;
     right: -80%;
     width: 20px;
